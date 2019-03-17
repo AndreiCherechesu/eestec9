@@ -16,7 +16,7 @@ cv2.createTrackbar("U - H", "Trackbars", 179, 179, nothing)
 cv2.createTrackbar("U - S", "Trackbars", 255, 255, nothing)
 cv2.createTrackbar("U - V", "Trackbars", 255, 255, nothing)
 
-def detect_subzero(frame_subzero, frame, lower_subzero, upper_subzero):
+def detect_subzero(frame_subzero, frame, lower_subzero, upper_subzero, ):
     frame_rgb = cv2.cvtColor(frame_subzero, cv2.COLOR_BGR2RGB)
     
     # # clean image
@@ -49,11 +49,13 @@ def detect_subzero(frame_subzero, frame, lower_subzero, upper_subzero):
     
     for cnt in contours:
         if 300<cv2.contourArea(cnt)<5000:
+            # cv2.drawContours(aux_gray, color=(255,0,0))
+            # cv2.drawContours(frame, color=(255,0,0))
             (x,y,w,h) = cv2.boundingRect(cnt)
             if w > 10 and h > 30:
                 cv2.rectangle(aux_gray, (x,y), (x+w,y+h), (255, 0, 0), 2)
                 cv2.rectangle(frame, (x,y), (x+w,y+h), (255, 0, 0), 2)
-        
+
         # (x,y,w,h) = cv2.boundingRect(cnt)
         # if w > 5 and h > 5:
         #     cv2.rectangle(aux_gray, (x,y), (x+w,y+h), (0, 0, 255), 2)
@@ -89,30 +91,32 @@ def detect_scorpion(frame_scorpion, frame, lower_scorpion, upper_scorpion):
 
     kernel = np.ones((5,5),np.uint8)
     # closing = cv2.morphologyEx(res_gray, cv2.MORPH_CLOSE, kernel)
-    dilation = cv2.dilate(res_gray, kernel, iterations=7)
-    erodate = cv2.erode(dilation, kernel, iterations=5)
+    # closing = cv2.morphologyEx(closing, cv2.MORPH_CLOSE, kernel)
+    dilation = cv2.dilate(res_gray, kernel, iterations=2)
+    erodate = cv2.erode(dilation, kernel, iterations=2)
 
     contours, hier = cv2.findContours(erodate, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
+    
     aux_gray = res_gray
     
+
+    last_mean = (0,0,0)
     for cnt in contours:
         if 300<cv2.contourArea(cnt)<5000:
+            # cv2.drawContours(aux_gray, [cnt], 0, (255,0,0), 3)
+            # cv2.drawContours(frame, [cnt], 0, (255,0,0), -1)
             (x,y,w,h) = cv2.boundingRect(cnt)
             if w > 10 and h > 30:
                 cv2.rectangle(aux_gray, (x,y), (x+w,y+h), (0, 0, 255), 2)
                 cv2.rectangle(frame, (x,y), (x+w,y+h), (0, 0, 255), 2)
-        
-        # (x,y,w,h) = cv2.boundingRect(cnt)
-        # if w > 5 and h > 5:
-        #     cv2.rectangle(aux_gray, (x,y), (x+w,y+h), (0, 0, 255), 2)
-        #     cv2.rectangle(frame, (x,y), (x+w,y+h), (0, 0, 255), 2)
-
+            
     
     cv2.imshow('scorpion', aux_gray)
     cv2.waitKey(1)
     cv2.imshow('scorpion_dilatat', erodate)
     cv2.waitKey(1)
+
+
 
 def example(frame):
     l_h = cv2.getTrackbarPos("L - H", "Trackbars")
@@ -132,11 +136,11 @@ def example(frame):
 
     detect_subzero(frame_subzero, frame, lower_subzero, upper_subzero)
     
-    lower_scorpion = np.array([l_h, l_s, l_v])
-    upper_scorpion = np.array([u_h, u_s, u_v])
+    # lower_scorpion = np.array([l_h, l_s, l_v])
+    # upper_scorpion = np.array([u_h, u_s, u_v])
 
-    # lower_scorpion = np.array([88, 114, 87])
-    # upper_scorpion = np.array([116, 167, 182])
+    lower_scorpion = np.array([88, 114, 87])
+    upper_scorpion = np.array([116, 167, 182])
 
     # lower_scorpion = np.array([229, 30, 39])
     # upper_scorpion = np.array([238, 40, 55])

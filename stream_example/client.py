@@ -9,7 +9,7 @@ sock = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
 
 data = ''
-payload_size = struct.calcsize("L")
+payload_size = struct.calcsize(">L")
 
 curFrame = -1
 lastFrame = -1
@@ -25,7 +25,7 @@ def initFrameFragments():
 
 def decodeData(p):
     packed_msg_size = p[:payload_size]
-    msg_size = struct.unpack("L", packed_msg_size)[0]
+    msg_size = struct.unpack(">L", packed_msg_size)[0]
     res = p[payload_size:]
     return pickle.loads(res)
 
@@ -42,7 +42,8 @@ def renderFrame(frameCallback):
 
     # comment this log (it's verbose, but helpful to benchmark your fps)
     printTimeDiff('receiving new frame ' + str(curFrame)+ ', with ' + str(len(frameFragments)) + ' fragments')
-    resized = cv2.resize(frame, (0,0), fx=1/compressionRatio, fy=1/compressionRatio)
+    # resized = cv2.resize(frame, (0,0), fx=1/compressionRatio, fy=1/compressionRatio)
+    resized = frame
     frameCallback(resized)
     initFrameFragments()
 
