@@ -434,16 +434,6 @@ def comboAttack():
 
 funclist = [comboAttack, doom_left, doom_right, tucombo_left, tucombo_right, counterAttack]
 
-
-
-# def berserk():
-#     while(1):
-#         comenzi.teleport_right()
-#         comenzi.teleport_left()
-
-# t = Thread(target=berserk)
-# t.start()
-
 def example(frame):
     l_h = cv2.getTrackbarPos("L - H", "Trackbars")
     l_s = cv2.getTrackbarPos("L - S", "Trackbars")
@@ -504,13 +494,13 @@ def example(frame):
     t2 = Thread(target=too_distant)
     t2.start()
 
-    # detected_jmp = False
-    # if (counter_jmp <= 0):
-    #     detected_jmp = detect_jump(frame_subzero, frame, lower_subzero, upper_subzero)
-    # if (detected_jmp == True):
-    #     Thread(target=counterAttack).start()
-    #     # Thread(target=doom_left).start()
-    #     pass
+    detected_jmp = False
+    if (counter_jmp <= 0):
+        detected_jmp = detect_jump(frame_scorpion, frame, lower_scorpion, upper_scorpion)
+    if (detected_jmp == True):
+        # Thread(target=doom_right).start()
+        # Thread(target=doom_left).start()
+        pass
 
     compressionRatio = 0.4
     upscaled = cv2.resize(frame, (0,0), fx=1/compressionRatio, fy=1/compressionRatio)

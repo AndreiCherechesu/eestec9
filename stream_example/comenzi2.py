@@ -22,23 +22,16 @@ def sendCommand(url, body):
     try:
         # print(body)
         resp = requests.post(url, json = body)
-        # print(resp.status_code)
+        print(resp.status_code)
         # resp = sio.emit(url, body)
-        # print(resp.json())
-        return resp.json()
-        
+        print(resp)
     except requests.ConnectionError as e:
         print(e)
 
-url_admin = "http://10.81.176.97/admin"
-url_config = "http://10.81.176.97/stream_config"
-url_pselect = "http://10.81.176.97/player_select"
-url_command = "http://10.81.176.97/command"
-url_status = "http://10.81.176.97/get_status"
-
-status = {
-    "key" : "ztobuh98copz35ka"
-}
+url_admin = "http://10.81.176.105/admin"
+url_config = "http://10.81.176.105/stream_config"
+url_pselect = "http://10.81.176.105/player_select"
+url_command = "http://10.81.176.105/command"
 
 menu_down = {
 "key": "nuicho9423hlcx80",
@@ -83,145 +76,145 @@ menu_escape = {
 }
 
 select_scorpio = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "champion": "scorpio"
 }
 
 select_subzero = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "champion": "subzero"
 }
 
 game_up = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "up": True
 }
 }
 
 game_up_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "up": False
 }
 }
 
 game_down = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "down": True
 }
 }
 
 game_down_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "down": False
 }
 }
 
 game_left = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "left": True
 }
 }
 
 game_left_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "left": False
 }
 }
 
 game_right = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "right": True
 }
 }
 
 game_right_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "right": False
 }
 }
 
 game_front_punch = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "front_punch": True
 }
 }
 
 game_front_punch_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "front_punch": False
 }
 }
 
 game_back_punch = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "back_punch": True
 }
 }
 game_back_punch_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "back_punch": False
 }
 }
 
 game_front_kick = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "front_kick": True
 }
 }
 game_front_kick_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "front_kick": False
 }
 }
 
 game_back_kick = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "back_kick": True
 }
 }
 game_back_kick_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "back_kick": False
 }
 }
 
 game_interact = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "interact": True
 }
 }
 game_interact_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "interact": False
 }
 }
 
 game_throw = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "throw": True
 }
 }
 game_throw_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "throw": False
 }
@@ -229,13 +222,13 @@ game_throw_disable = {
 
 
 game_block = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "block": True
 }
 }
 game_block_disable = {
-"key": "ztobuh98copz35ka",
+"key": "2ptwedi1ddp0gow8",
 "commands": {
     "block": False
 }
@@ -267,20 +260,18 @@ def escape():
     sendCommand(url_admin, menu_up)
     time.sleep(0.3)
     sendCommand(url_admin, menu_up)
-    time.sleep(0.4)
+    time.sleep(0.2)
     sendCommand(url_admin, menu_enter)
     time.sleep(0.2)
     
 
 def low_kick():
-    sendCommand(url_command, game_right)
+    sendCommand(url_command, game_down)
     time.sleep(0.2)
-    sendCommand(url_command, game_left)
+    sendCommand(url_command, game_front_kick)
     time.sleep(0.2)
-    sendCommand(url_command, game_back_kick)
-    sendCommand(url_command, game_right_disable)
-    sendCommand(url_command, game_left_disable)
-    sendCommand(url_command, game_back_kick_disable)
+    sendCommand(url_command, game_front_kick_disable)
+    sendCommand(url_command, game_down_disable)
     time.sleep(0.2)
     
 
@@ -296,7 +287,7 @@ def teleport_right():
     sendCommand(url_command, game_left_disable)
     time.sleep(0.1)
     sendCommand(url_command, game_front_kick_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 
 
@@ -312,7 +303,7 @@ def teleport_left():
     sendCommand(url_command, game_right_disable)
     time.sleep(0.1)
     sendCommand(url_command, game_front_kick_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 def spear_right():
     sendCommand(url_command, game_left)
@@ -326,7 +317,7 @@ def spear_right():
     sendCommand(url_command, game_right_disable)
     time.sleep(0.1)
     sendCommand(url_command, game_front_punch_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 def spear_left():
     sendCommand(url_command, game_right)
@@ -340,7 +331,7 @@ def spear_left():
     sendCommand(url_command, game_left_disable)
     time.sleep(0.1)
     sendCommand(url_command, game_front_punch_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 def forward2_right():
     sendCommand(url_command, game_right)
@@ -349,7 +340,7 @@ def forward2_right():
     time.sleep(0.2)
     sendCommand(url_command, game_back_punch_disable)
     sendCommand(url_command, game_right_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 def forward2_left():
     sendCommand(url_command, game_left)
@@ -358,7 +349,7 @@ def forward2_left():
     time.sleep(0.2)
     sendCommand(url_command, game_back_punch_disable)
     sendCommand(url_command, game_left_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 def takedown_left():
     sendCommand(url_command, game_right)
@@ -370,7 +361,7 @@ def takedown_left():
     sendCommand(url_command, game_left_disable)
     sendCommand(url_command, game_right_disable)
     sendCommand(url_command, game_back_kick_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 def takedown_right():
     sendCommand(url_command, game_left)
@@ -382,7 +373,7 @@ def takedown_right():
     sendCommand(url_command, game_right_disable)
     sendCommand(url_command, game_left_disable)
     sendCommand(url_command, game_back_kick_disable)
-    time.sleep(0.4)
+    time.sleep(0.2)
 
 def move_right():
     sendCommand(url_command, game_right)
@@ -419,31 +410,6 @@ def block():
     time.sleep(0.2)
     sendCommand(url_command, game_block_disable)
 
-def upsword_left():
-    sendCommand(url_command, game_right)
-    time.sleep(0.1)
-    sendCommand(url_command, game_back_punch)
-    time.sleep(0.1)
-    sendCommand(url_command, game_right_disable)
-    sendCommand(url_command, game_back_punch_disable)
-
-def upsword_right():
-    sendCommand(url_command, game_left)
-    time.sleep(0.1)
-    sendCommand(url_command, game_back_punch)
-    time.sleep(0.1)
-    sendCommand(url_command, game_right_disable)
-    sendCommand(url_command, game_back_punch_disable)
-
-def uppercut():
-    sendCommand(url_command, game_down)
-    time.sleep(0.1)
-    sendCommand(url_command, game_back_punch)
-    time.sleep(0.1)
-    sendCommand(url_command, game_down_disable)
-    sendCommand(url_command, game_back_punch_disable)
-    time.sleep(0.1)
-
 # UDP_IP = "0.0.0.0"
 # UDP_PORT = 5005
 # if (len(sys.argv) > 1):
@@ -452,11 +418,11 @@ def uppercut():
 
 if __name__ == "__main__":
     # move_right()
-    # while(True):
-    #     teleport_right()
-    #     time.sleep(2)
-    #     teleport_left()
-    #     time.sleep(2)
+    while(True):
+        teleport_right()
+        time.sleep(0.2)
+        teleport_left()
+        time.sleep(0.2)
 
     while(True):
         line = sys.stdin.readline().strip()
@@ -555,7 +521,7 @@ if __name__ == "__main__":
     # sendCommand(url_command, game_right)
     # time.sleep(0.2)
     # sendCommand(url_command, game_right_disable)
-    # time.sleep(0.4)
+    # time.sleep(0.2)
     # sendCommand(url_command, game_front_punch)
     # time.sleep(0.2)
     # sendCommand(url_command, game_front_punch_disable)
@@ -563,7 +529,7 @@ if __name__ == "__main__":
     # sendCommand(url_command, game_back_kick)
     # time.sleep(0.2)
     # sendCommand(url_command, game_back_kick_disable)
-    # time.sleep(0.4)
+    # time.sleep(0.2)
     # teleport_right()
     # time.sleep(0.2)
     # sendCommand(url_command, game_back_punch)
@@ -573,10 +539,10 @@ if __name__ == "__main__":
     # sendCommand(url_command, game_front_punch)
     # time.sleep(0.2)
     # sendCommand(url_command, game_front_punch_disable)
-    # time.sleep(0.4)
+    # time.sleep(0.2)
 
     # spear_right()
-    # time.sleep(0.4)
+    # time.sleep(0.2)
     # takedown_right()
     # time.sleep(0.2)
     # teleport_right()

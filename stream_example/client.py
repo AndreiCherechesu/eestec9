@@ -33,8 +33,6 @@ compressionRatio = 1
 
 import time
 
-
-
 def renderFrame(frameCallback):
     global compressionRatio
     frame = np.concatenate(frameFragments)
